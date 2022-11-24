@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- 폰트 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- 
+        font-family: 'Noto Sans KR', sans-serif;
+     -->
+     <style>
+        .contact .section-t h1 {text-align: left;}
+        .contact .section-t h1::before {left: 0;}
+        .contact h3 {
+            font-weight: 700;
+            color: rgb(223, 130, 145);
+            margin-bottom: 10px;
+        }
+        .contact .wrap {
+            padding: 30px;
+            box-sizing: border-box;
+        }
+        .contact input {
+            width: 100%;
+            margin-bottom: 10px;
+            background-color: #f1f1f1;
+            border: none;
+            outline: none;
+            height: 50px;
+            padding-left: 10px;
+            box-sizing: border-box;
+        }
+        .contact .input:nth-child(3) input {height: 200px;}
+        .contact button {
+            background-color: black;
+            color: white;
+            height: 50px; width: 150px;
+            font-size: 13px;
+            font-weight: 300;
+        }
+        .contact .btn {padding: 0;}
+        .map iframe {
+            width: 100%; height: 400px;
+            margin-bottom: 100px;
+        }
+     </style>
+</head>
+<body>
+    <header class="container-fluid">
+        <div class="logo col-md-6 col-sm-12">
+            <a href="index.html"><img src="img/logo.png" alt="logo"></a>
+        </div>
+        <ul class="menu col-md-6 hidden-sm hidden-xs">
+            <li><a href="index.html">home</a></li>
+            <li><a href="about.html">about</a></li>
+            <li><a href="shop.html">shop</a></li>
+            <li><a href="notice.html">notice</a></li>
+            <li><a href="contact.html">contact</a></li>
+        </ul>
+        <div class="ham-btn">
+            <div class="bar bar1"></div>
+            <div class="bar bar2"></div>
+            <div class="bar bar3"></div>
+        </div>
+    </header>
+
+    <div class="side-bg"></div>
+    <div class="side-menu">
+        <div class="btn-close">
+            <div class="bar bar1"></div>
+            <div class="bar bar2"></div>
+        </div>
+        <div class="row row1">
+            <p><a href="#">Login</a></p>
+            <p><a href="#">Join</a></p>
+        </div>
+        <div class="row row2">
+            <img src="img/hf-about-logo.jpg" alt="">
+        </div>
+        <div class="row row3">
+            <p>
+                청춘의 섬광처럼 반짝이는 순간도 꿈결같은 추억도 언젠가 온전한 형태는 변하기 마련입니다.
+                그러나 기억을 향한 애착은 순간을 둘러싼 공기와 온도, 느낌까지도 간직할 수 있게 하죠.
+                간직하고 싶은 잔잔한 순간을 <span class="hf">허니플라밍고</span>와 함께하세요.
+            </p>
+        </div>
+        <div class="row row4">
+            <h4>Follow Us</h4>
+            <p><a href="#">Instagram</a></p>
+            <p><a href="#">Blog</a></p>
+        </div>
+    </div>
+
+    <section class="page-title">
+        <div class="container-fluid">
+            <div class="col-xs-12">
+                <img src="img/paget-contact.jpg" alt="">
+                <div class="section-t">
+                    <h1>CONTACT US</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact">
+        <div class="container">
+            <div class="section-t col-md-4 col-sm-12">
+                <h1>STAY IN TOUCH WITH US</h1>
+                <h3>HONEY FLAMINGO</h3>
+                <p>서울특별시 용산구 이태원로 255-1 2층</p>
+                <p>010-4118-8341</p>
+                <p>kojimim@naver.com</p>
+            </div>
+            <div class="wrap col-md-8 col-sm-12">
+                <div class="input"><input type="text" placeholder="성함"></div>
+                <div class="input"><input type="text" placeholder="답장 받으실 메일 주소"></div>
+                <div class="input"><input type="text" placeholder="문의사항을 입력해 주세요."></div>
+                <div class="input btn"><button>SEND</button></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="map">
+        <div class="container col-xs-12">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3163.7402166260663!2d126.99861905081002!3d37.537620679704155!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca3b24bfaa35b%3A0x4f4e2b6292771833!2z7ISc7Jq47Yq567OE7IucIOyaqeyCsOq1rCDsnbTtg5zsm5DroZwgMjU1LTEgMuy4tQ!5e0!3m2!1sko!2skr!4v1666333532921!5m2!1sko!2skr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="item col-md-3 col-sm-12">
+                <h4>CS Center</h4>
+                <p class="tell">010-4118-8341</p>
+                <p>AM 11:00 ~ PM 06:00</p>
+                <p>SAT/SUN/HOLIDAY CLOSED</p>
+            </div>
+            <div class="item col-md-3 col-sm-12">
+                <h4>bank info</h4>
+                <p>KB 240801-04-393787</p>
+                <p>WR 1005-502-652697</p>
+                <p>IBK 422-093878-01-013</p>
+                <p>예금주: 곽미림(허니플라밍고)</p>
+            </div>
+            <div class="item col-md-4 col-sm-12">
+                <h4>info</h4>
+                <p>
+                    <span>honeyflamingo</span>
+                    <span>│</span>
+                    <span>곽미림</span>
+                </p>
+                <p>서울특별시 용산구 이태원로 255-1 2층</p>
+                <p>135-31-90836</p>
+                <p>kojimim@naver.com</p>
+            </div>
+            <div class="item col-md-2 col-sm-12">
+                <h4>Follow us</h4>
+                <p><a href="#">Instagram</a></p>
+                <p><a href="#">Blog</a></p>
+            </div>
+            <div class="item copyright col-xs-12">
+                COPYRIGHT (C) HONEY FLAMINGO. ALL RIGHTS RESERVED.
+            </div>
+        </div>
+    </footer>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script>
+    $(".ham-btn").click(function(){
+        $(".ham-btn").toggleClass("on")
+        $(".side-menu").toggleClass("on")
+        $(".side-bg").stop().fadeToggle()
+    })
+    $(".btn-close").click(function(){
+        $(".ham-btn").removeClass("on")
+        $(".side-menu").removeClass("on")
+        $(".side-bg").stop().fadeOut()
+    })
+    $(".side-bg").click(function(){
+        $(".ham-btn").removeClass("on")
+        $(".side-menu").removeClass("on")
+        $(".side-bg").stop().fadeOut()
+    })
+</script>
+</html>

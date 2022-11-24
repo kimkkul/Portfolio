@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLIO</title>
+    <!-- 폰트어썸 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" rel="stylesheet">
+
+    <!-- 공통 스타일 연결 -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- 폰트 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+
+    <!-- 
+        font-family: 'Noto Sans KR', sans-serif;
+        font-family: 'Merriweather', serif;
+        font-family: 'Merriweather Sans', sans-serif;
+     -->
+     <style>
+        .section {padding-top: 0;}
+        .sub_nav {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            text-transform: uppercase;
+            color: #777777;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+        .sub_nav i {
+            font-size: 10px;
+            color: #999999;
+        }
+        .section .row2 {
+            border-top: 1px solid #666666;
+            border-bottom: 1px solid #666666;
+        }
+        ul.cate {
+            height: 100%;
+            width: 75%; margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+        }
+        .cate_list {
+            height: 100%;
+            padding: 11px 15px 7px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+        .cate_list:hover {color: #999999;}
+        .cate_list.selected {border-bottom: 4px solid #222222;}
+
+        .row3 h3 {
+            font-size: 25px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .row4 .arrange {
+            border-radius: 0;
+            padding: 3px 5px;
+            position: absolute;
+            top: -50px; right: 0;
+        }
+        .row4 .item_group {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            column-gap: 40px;
+            row-gap: 60px;
+            margin-top: 80px;
+        }
+        .row4 .item_group img {width: 100%;}
+        .itemHover {
+            position: absolute;
+            top: 0; left: 0;
+            opacity: 0;
+            transition: 0.3s;
+        }
+        .img_box:hover .itemHover {opacity: 1;}
+        .text-box {padding-top: 10px;}
+        .text-box .item_name {
+            font-size: 14px;
+            color: #333333;
+        }
+        .price_group span {margin-right: 5px;}
+        .price_group .sale {
+            font-size: 20px;
+            font-weight: 500;
+        }
+        .price_group .original {
+            font-size: 15px;
+            color: #999999;
+            text-decoration: line-through;
+        }
+        .price_group .percent {
+            font-size: 18px;
+            color: orangered;
+        }
+        .color_group {
+            display: flex;
+            gap: 5px;
+            margin-top: 10px;
+        }
+        .color_group .color {
+            width: 14px; height: 14px;
+            border: 1px solid #f1f1f1;
+        }
+        .color_group.color_skin .color1 {background-color: rgb(252, 201, 112);}
+        .color_group.color_skin .color2 {background-color: rgb(246, 205, 143);}
+        .color_group.color_skin .color3 {background-color: rgb(246, 215, 168);}
+        .color_group.color_skin .color4 {background-color: rgb(249, 232, 206);}
+
+        .color_group.color_lip .color1 {background-color: red;}
+        .color_group.color_lip .color2 {background-color: rgb(220, 72, 23);}
+        .color_group.color_lip .color3 {background-color: rgb(218, 97, 83);}
+        .color_group.color_lip .color4 {background-color: rgb(255, 85, 0);}
+        .color_group.color_lip .color5 {background-color: rgb(139, 29, 86);}
+
+        .color_group.color_eye .color1 {background-color: rgb(56, 56, 56);}
+        .color_group.color_eye .color2 {background-color: rgb(74, 59, 59);}
+        .color_group.color_eye .color3 {background-color: rgb(87, 68, 51);}
+
+        .color_group.colorGliter .color1 {background-color: rgb(248, 199, 153);}
+        .color_group.colorGliter .color2 {background-color: rgb(253, 201, 250);}
+
+        .row5 .btnGroup {
+            margin: 100px auto 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btnGroup a {
+            border: 1px solid #cdcdcd;
+            border-right: none;
+            width: 30px; height: 30px;
+            font-size: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #666666;
+        }
+        .btnGroup i {font-size: 12px;}
+        .btnGroup a:last-child {border-right: 1px solid #cdcdcd;}
+        .btnGroup a:first-child i,
+        .btnGroup a:last-child i {margin: 0 -1px;}
+
+        .item_group .item:nth-child(1)::before {
+        content: '';
+        display: block;
+        width: 10px; height: 10px;
+        background-color: red;
+        border-radius: 50%;
+        position: absolute;
+        top: -15px; left: -15px;
+    }
+     </style>
+</head>
+<body>
+    <header>
+        <div class="row row1">
+            <div class="container">
+                <div class="logo"><a href="index.html"><img src="img/logo-white.png" alt="logo"></a></div>
+                <div class="login_group">
+                    <p><a href="#" class="login">로그인</a></p>
+                    <p><a href="#" class="join">회원가입</a></p>
+                    <p class="search">검색</p>
+                </div>
+                <div class="ham_btn">
+                    <div class="bar bar1"></div>
+                    <div class="bar bar2"></div>
+                    <div class="bar bar3"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row row2">
+            <div class="container">
+                <ul class="menu">
+                    <li class="menu_list"><a href="sub_empty.html"><p>about</p><div class="line"></div></a>
+                        <div class="sub">
+                            <div class="container">
+                                <ul>
+                                    <li><a href="">About CLIO</a></li>
+                                </ul>
+                                <div class="img_box"><img src="img/submenu6.jpg" alt=""></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="menu_list"><a href="best.html"><p>products</p><div class="line"></div></a>
+                        <div class="sub">
+                            <div class="container">
+                                <div class="left">
+                                    <ul>
+                                        <li class="best"><a href="best.html">베스트 제품</a></li>
+                                        <li><a href="">신상품</a></li>
+                                    </ul>
+                                    <ul>
+                                        <li><a href="">베이스/선</a></li>
+                                        <li><a href="">아이</a></li>
+                                        <li><a href="">립</a></li>
+                                        <li><a href="">클렌징</a></li>
+                                        <li><a href="">네일</a></li>
+                                        <li><a href="">도구/ACC</a></li>
+                                    </ul>
+                                </div>
+                                <div class="right">
+                                    <div class="img_box"><img src="img/submenu2.jpg" alt=""></div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="menu_list"><a href="sub_empty.html"><p>contents</p><div class="line"></div></a>
+                        <div class="sub">
+                            <div class="container">
+                                <ul>
+                                    <li><a href="">TV 광고</a></li>
+                                    <li><a href="">메이크업룩</a></li>
+                                    <li><a href="">메이크업팁</a></li>
+                                    <li><a href="">갤러리</a></li>
+                                </ul>
+                                <div class="img_box"><img src="img/submenu4.jpg" alt=""></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="menu_list"><a href="sub_empty.html"><p>event</p><div class="line"></div></a>
+                        <div class="sub">
+                            <div class="container">
+                                <ul>
+                                    <li><a href="">진행중인 이벤트</a></li>
+                                    <li><a href="">종료된 이벤트</a></li>
+                                    <li><a href="">당첨자 발표</a></li>
+                                </ul>
+                                <div class="img_box"><img src="img/submenu7.jpg" alt=""></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="menu_list"><a href="sub_empty.html"><p>community</p><div class="line"></div></a>
+                        <div class="sub">
+                            <div class="container">
+                                <ul>
+                                    <li><a href="">공지사항</a></li>
+                                    <li><a href="">FAQ</a></li>
+                                    <li><a href="">Q&A</a></li>
+                                    <li><a href="">리뷰</a></li>
+                                    <li><a href="">오프라인 매장찾기</a></li>
+                                </ul>
+                                <div class="img_box"><img src="img/submenu3.jpg" alt=""></div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="sub_bg"></div>
+        </div>
+    </header>
+
+    <div class="fullscreen_bg"></div>
+
+    <div class="search_box">
+        <div class="close_btn">
+            <div class="bar bar1"></div>
+            <div class="bar bar2"></div>
+        </div>
+        <div class="search_wrap">
+            <div class="input_group">
+                <input type="text" placeholder="검색어를 입력하세요">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <ul class="search_ul">
+                <li class="search_list"><a href="#">#킬커버더뉴쿠션</a></li>
+                <li class="search_list"><a href="#">#홀리데이틴트</a></li>
+                <li class="search_list"><a href="#">#최소라쿠션</a></li>
+                <li class="search_list"><a href="#">#킬브로우</a></li>
+                <li class="search_list"><a href="#">#듀이시럽틴트</a></li>
+                <li class="search_list"><a href="#">#홀리데이팔레트</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="ham_menu">
+        <div class="close_btn">
+            <div class="bar bar1"></div>
+            <div class="bar bar2"></div>
+        </div>
+        <div class="row row1">
+            <a href="login.html">로그인</a>
+            <a href="">회원가입</a>
+        </div>
+        <div class="row row2">
+            <input type="text" placeholder="검색">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <div class="row row3">
+            <ul class="ham_ul">
+                <li class="ham_list"><p>about</p></li>
+                <li class="ham_list"><p>products</p>
+                    <ul class="ham_sub">
+                        <a href=""><li>베스트 제품</li></a>
+                        <a href=""><li>신상품</li></a>
+                        <a href=""><li>베이스/선</li></a>
+                        <a href=""><li>아이</li></a>
+                        <a href=""><li>립</li></a>
+                        <a href=""><li>클렌징</li></a>
+                        <a href=""><li>네일</li></a>
+                        <a href=""><li>도구/ACC</li></a>
+                    </ul>
+                </li>
+                <li class="ham_list"><p>contents</p>
+                    <ul class="ham_sub">
+                        <a href=""><li>TV 광고</li></a>
+                        <a href=""><li>메이크업룩</li></a>
+                        <a href=""><li>메이크업팁</li></a>
+                        <a href=""><li>갤러리</li></a>
+                    </ul>
+                </li>
+                <li class="ham_list"><p>event</p>
+                    <ul class="ham_sub">
+                        <a href=""><li>진행중인 이벤트</li></a>
+                        <a href=""><li>종료된 이벤트</li></a>
+                        <a href=""><li>당첨자 발표</li></a>
+                    </ul>
+                </li>
+                <li class="ham_list"><p>community</p>
+                    <ul class="ham_sub">
+                        <a href=""><li>공지사항</li></a>
+                        <a href=""><li>FAQ</li></a>
+                        <a href=""><li>Q&A</li></a>
+                        <a href=""><li>리뷰</li></a>
+                        <a href=""><li>오프라인 매장찾기</li></a>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="sub_header">
+        <h1 class="sh_title">best</h1>
+        <p class="sh_text">지금 클리오에서 가장 핫한 제품들을 만나 보세요.</p>
+    </div>
+
+    <section class="section">
+        <div class="container">
+            <div class="row row1">
+                <ul class="sub_nav">
+                    <li class="sub_nav_list">home</li>
+                    <li class="sub_nav_list"><i class="fa-solid fa-chevron-right"></i></li>
+                    <li class="sub_nav_list">products</li>
+                    <li class="sub_nav_list"><i class="fa-solid fa-chevron-right"></i></li>
+                    <li class="sub_nav_list">best</li>
+                </ul>
+            </div>
+            <div class="row row2">
+                <ul class="cate">
+                    <li class="cate_list selected" data-name="item">전체</li>
+                    <li class="cate_list" data-name="base">베이스/선</li>
+                    <li class="cate_list" data-name="eye">아이</li>
+                    <li class="cate_list" data-name="lip">립</li>
+                    <li class="cate_list" data-name="cleansing">클렌징</li>
+                    <li class="cate_list" data-name="nail">네일</li>
+                    <li class="cate_list" data-name="acc">도구/ACC</li>
+                </ul>
+            </div>
+            <div class="row row3">
+                <h3 class="cateTitle">전체</h3>
+            </div>
+            <div class="row row4">
+                <select name="arrange" class="arrange">
+                    <option value="#">인기순</option>
+                    <option value="#">출시일순</option>
+                    <option value="#">리뷰많은순</option>
+                    <option value="#">별점높은순</option>
+                    <option value="#">고가순</option>
+                    <option value="#">저가순</option>
+                </select>
+                <div class="item_group">
+                    <div class="item base">
+                        <a href="thenewcushion.html">
+                            <div class="img_box">
+                                <img src="img/item01.jpg">
+                                <img src="img/itemHover01.jpg" alt="제품사용컷" class="itemHover">
+                            </div>
+                        </a>
+                        <div class="text-box">
+                            <p class="item_name"><a href="thenewcushion.html">[NEW] 킬커버 파운웨어 더뉴 쿠션</a></p>
+                            <div class="price_group">
+                                <span class="sale">23,800</span>
+                                <span class="original">34,000</span>
+                                <span class="percent">30%</span>
+                            </div>
+                            <div class="color_group color_skin">
+                                <div class="color color1"></div>
+                                <div class="color color2"></div>
+                                <div class="color color3"></div>
+                                <div class="color color4"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item lip">
+                        <div class="img_box">
+                            <img src="img/item02.jpg">
+                            <img src="img/itemHover02.jpg" alt="제품사용컷" class="itemHover">
+                        </div>
+                        <div class="text-box">
+                            <p class="item_name">[NEW Color] 쉬폰 블러 틴트</p>
+                            <div class="price_group">
+                                <span class="sale">12,600</span>
+                                <span class="original">18,000</span>
+                                <span class="percent">30%</span>
+                            </div>
+                            <div class="color_group color_lip">
+                                <div class="color color1"></div>
+                                <div class="color color2"></div>
+                                <div class="color color3"></div>
+                                <div class="color color4"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item eye">
+                        <div class="img_box">
+                            <img src="img/item03.jpg">
+                            <img src="img/itemHover03.jpg" alt="제품사용컷" class="itemHover">
+                        </div>
+                        <div class="text-box">
+                            <p class="item_name">킬브로우 오토 하드 브로우 펜슬</p>
+                            <div class="price_group">
+                                <span class="sale">23,800</span>
+                                <span class="original">34,000</span>
+                                <span class="percent">30%</span>
+                            </div>
+                            <div class="color_group color_eye">
+                                <div class="color color1"></div>
+                                <div class="color color2"></div>
+                                <div class="color color3"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item eye">
+                        <div class="img_box">
+                            <img src="img/item04.jpg" alt="">
+                            <img src="img/itemHover04.jpg" alt="제품사용컷" class="itemHover">
+                        </div>
+                        <div class="text-box">
+                            <p class="item_name">[1+1] 수퍼프루프 펜 라이너</p>
+                            <div class="price_group">
+                                <span class="sale">19,900</span>
+                                <span class="original">30,000</span>
+                                <span class="percent">33%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item base">
+                        <div class="img_box">
+                            <img src="img/item05.jpg">
+                            <img src="img/itemHover05.jpg" alt="제품사용컷" class="itemHover">
+                        </div>
+                        <div class="text-box">
+                            <p class="item_name">킬커버 광체 파운데이션 기획 세트 (본품+브러쉬)</p>
+                            <div class="price_group">
+                                <span class="sale">21,000</span>
+                                <span class="original">30,000</span>
+                                <span class="percent">30%</span>
+                            </div>
+                            <div class="color_group color_skin">
+                                <div class="color color2"></div>
+                                <div class="color color3"></div>
+                                <div class="color color4"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item lip">
+                        <div class="img_box">
+                            <img src="img/item06.jpg">
+                            <img src="img/itemHover06.jpg" alt="제품사용컷" class="itemHover">
+                        </div>
+                        <div class="text-box">
+                            <p class="item_name">듀이 시럽 틴트</p>
+                            <div class="price_group">
+                                <span class="sale">12,600</span>
+                                <span class="original">18,000</span>
+                                <span class="percent">30%</span>
+                            </div>
+                            <div class="color_group color_lip">
+                                <div class="color color1"></div>
+                                <div class="color color2"></div>
+                                <div class="color color3"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item base">
+                        <div class="img_box">
+                            <img src="img/item07.jpg">
+                            <img src="img/itemHover07.jpg" alt="제품사용컷" class="itemHover">
+                        </div>
+                        <div class="text-box">
+                            <p class="item_name">킬커버 파운웨어 파운데이션 (메이크업 스파츌라 증정)</p>
+                            <div class="price_group">
+                                <span class="sale">22,300</span>
+                                <span class="original">34,000</span>
+                                <span class="percent">34%</span>
+                            </div>
+                            <div class="color_group color_skin">
+                                <div class="color color1"></div>
+                                <div class="color color2"></div>
+                                <div class="color color3"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item eye">
+                        <div class="img_box">
+                            <img src="img/item08.jpg">
+                            <img src="img/itemHover08.jpg" alt="제품사용컷" class="itemHover">
+                        </div>
+                        <div class="text-box">
+                            <p class="item_name">프로 아이 팔레트 (AD)</p>
+                            <div class="price_group">
+                                <span class="sale">20,900</span>
+                                <span class="original">32,000</span>
+                                <span class="percent">34%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item base">
+                        <a href="thenewcushion.html">
+                            <div class="img_box">
+                                <img src="img/item09.jpg">
+                                <img src="img/itemHover09.jpg" alt="제품사용컷" class="itemHover">
+                            </div>
+                        </a>
+                        <div class="text-box">
+                            <p class="item_name"><a href="thenewcushion.html">프리즘 하이라이터 듀오</a></p>
+                            <div class="price_group">
+                                <span class="sale">16,100</span>
+                                <span class="original">23,000</span>
+                                <span class="percent">30%</span>
+                            </div>
+                            <div class="color_group colorGliter">
+                                <div class="color color1"></div>
+                                <div class="color color2"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item acc">
+                        <div class="img_box">
+                            <img src="img/item10.jpg" alt="제품">
+                            <img src="img/itemHover10.jpg" alt="제품사용컷" class="itemHover">
+                        </div>
+                        <div class="text-box">
+                            <p class="item_name">데일리 뽀글이 파우치</p>
+                            <div class="price_group">
+                                <span class="sale">9,900</span>
+                                <span class="original">12,000</span>
+                                <span class="percent">17%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item acc">
+                        <div class="img_box">
+                            <img src="img/item11.jpg">
+                            <img src="img/itemHover11.jpg" alt="제품사용컷" class="itemHover">
+                        </div>
+                        <div class="text-box">
+                            <p class="item_name">프로 아이 유니버스 브러쉬 2종 세트</p>
+                            <div class="price_group">
+                                <span class="sale">10,500</span>
+                                <span class="original">15,000</span>
+                                <span class="percent">30%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item cleansing">
+                        <div class="img_box">
+                            <img src="img/item12.jpg" alt="">
+                            <img src="img/itemHover12.jpg" alt="제품사용컷" class="itemHover">
+                        </div>
+                        <div class="text-box">
+                            <p class="item_name">마이크로페셔널 딥 클렌징 폼 150ml</p>
+                            <div class="price_group">
+                                <span class="sale">14,000</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item cleansing">
+                        <div class="img_box">
+                            <img src="img/item13.jpg">
+                            <img src="img/itemHover13.jpg" alt="제품사용컷" class="itemHover">
+                        </div>
+                        <div class="text-box">
+                            <p class="item_name">킬래쉬 마스카라 리무버</p>
+                            <div class="price_group">
+                                <span class="sale">5,900</span>
+                                <span class="original">12,000</span>
+                                <span class="percent">50%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item lip">
+                        <div class="img_box">
+                            <img src="img/item14.jpg">
+                            <img src="img/itemHover14.jpg" alt="제품사용컷" class="itemHover">
+                        </div>
+                        <div class="text-box">
+                            <p class="item_name">멜팅 쉬어 매트밤</p>
+                            <div class="price_group">
+                                <span class="sale">9,600</span>
+                                <span class="original">16,000</span>
+                                <span class="percent">40%</span>
+                            </div>
+                            <div class="color_group color_lip">
+                                <div class="color color1"></div>
+                                <div class="color color2"></div>
+                                <div class="color color3"></div>
+                                <div class="color color3"></div>
+                                <div class="color color3"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item base">
+                        <div class="img_box">
+                            <img src="img/item15.jpg">
+                            <img src="img/itemHover15.jpg" alt="제품사용컷" class="itemHover">
+                        </div>
+                        <div class="text-box">
+                            <p class="item_name">비건웨어 UV 세팅 프라이머</p>
+                            <div class="price_group">
+                                <span class="sale">22,400</span>
+                                <span class="original">32,000</span>
+                                <span class="percent">30%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item base">
+                        <div class="img_box">
+                            <img src="img/item16.jpg">
+                            <img src="img/itemHover16.jpg" alt="제품사용컷" class="itemHover">
+                        </div>
+                        <div class="text-box">
+                            <p class="item_name">비건웨어 헬시글로우 쿠션 기획 (본품+리필구성)</p>
+                            <div class="price_group">
+                                <span class="sale">29,200</span>
+                                <span class="original">45,000</span>
+                                <span class="percent">35%</span>
+                            </div>
+                            <div class="color_group color_skin">
+                                <div class="color color1"></div>
+                                <div class="color color2"></div>
+                                <div class="color color3"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="row row5">
+                <div class="btnGroup">
+                    <a href="" class="first"><i class="fa-solid fa-chevron-left"></i><i class="fa-solid fa-chevron-left"></i></a>
+                    <a href="" class="prev"><i class="fa-solid fa-chevron-left"></i></a>
+                    <a href="" class="num num1">1</a>
+                    <a href="" class="next"><i class="fa-solid fa-chevron-right"></i></a>
+                    <a href="" class="last"><i class="fa-solid fa-chevron-right"></i><i class="fa-solid fa-chevron-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 하단 -->
+    <footer>
+        <div class="container">
+            <div class="row row1">
+                <div class="ft_logo"><a href="index.html"><img src="img/logo-white.png" alt="로고"></a></div>
+                <ul class="infoUl">
+                    <li class="infoList"><a href="">이용약관</a></li>
+                    <li class="infoList"><a href="">개인정보 처리방침</a></li>
+                    <li class="infoList"><a href="">매장정보</a></li>
+                    <li class="infoList"><a href="">이메일무단수집거부</a></li>
+                    <li class="infoList"><a href="">회사소개</a></li>
+                </ul>
+            </div>
+            <div class="row row2">
+                <div class="mobileCS">
+                    <p class="cs">고객센터<span class="tel">080-080-1510</span></p>
+                    <p class="time">평일 09:30 ~ 17:00 (점심시간 12:30 ~ 13:30)</p>
+                    <p class="time">주말/공휴일 휴무</p>
+                </div>
+                <div class="left">
+                    <div class="address">
+                        대표: 한현옥 │ 개인정보담당자: 이연재 팀장
+                        <br>
+                        본사: 서울시 성동구 왕십리로 66 (주)클리오 (분당선 서울숲역 2번 출구)
+                        <br>
+                        경기도 안성시 양성면 이현배티길 42-12 (주)클리오 물류센터
+                        <br>
+                        사업자등록번호: 211-86-22189 <a href="">사업자정보확인</a>
+                        <br>
+                        통신판매업신고번호 : 제 2020-서울성동-00339호
+                    </div>
+                    <p class="copyright">COPYRIGHT (C) 2017 clubclio.co.ltd. ALL RIGHTS RESERVED</p>
+                </div>
+                <div class="right">
+                    <p class="cs">고객센터</p>
+                    <p class="tel">080-080-1510</p>
+                    <p class="time"><span>평일</span>09:30 ~ 17:00</p>
+                    <p class="time"><span>점심시간</span>12:30 ~ 13:30</p>
+                    <p class="time">주말/공휴일 휴무</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="btn_top"><img src="img/btn_top.png" alt=""></div>
+    
+    <!-- 로그인팝업창 -->
+    <div class="pop_login">
+        <div class="cont">
+            <div class="item item-left">
+                <img src="img/poplogin.jpg">
+            </div>
+            <div class="item item-right">
+                <div class="close_btn">
+                    <div class="bar bar1"></div>
+                    <div class="bar bar2"></div>
+                </div>
+                <div class="row row1"><h1>Login</h1></div>
+                <div class="row row2"><input type="text" placeholder="아이디"></div>
+                <div class="row row3"><input type="password" placeholder="비밀번호"></div>
+                <div class="row row4">
+                    <input type="checkbox" id="login-check">
+                    <label for="login-check"><span></span></label>자동로그인
+                </div>
+                <div class="row row5"><span>아이디/비밀번호 찾기</span></div>
+                <div class="row row6"><button>로그인</button></div>
+                <div class="row row7"><button>회원가입</button></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+<script>
+    // 햄버튼메뉴
+    $(".ham_btn").click(function(){
+        $(".ham_menu").addClass("on")
+    })
+    $(".ham_menu .close_btn").click(function(){
+        $(".ham_menu").removeClass("on")
+    })
+
+    // 서브메뉴 슬라이드
+    $(".menu_list").mouseenter(function(){
+        subMenu = $(this).index()
+        $(".menu_list .sub").eq(subMenu).stop().slideDown()
+        $(".menu_list .sub").not( $(".menu_list .sub").eq(subMenu) ).stop().slideUp()
+    })
+    $(".menu_list").mouseleave(function(){
+        $(".menu_list .sub").stop().slideUp()
+    })
+
+    // 햄메뉴 서브메뉴
+    $(".ham_menu .ham_list").click(function(){
+        ham_sub = $(this).index()
+        $(".ham_menu .ham_list").eq(ham_sub).find(".ham_sub").stop().slideToggle()
+        $(".ham_menu .ham_list").not( $(".ham_menu .ham_list").eq(ham_sub) ).find(".ham_sub").stop().slideUp()
+    })
+
+    // 로그인팝업
+    $("header .login").click(function(){
+        $(".pop_login").stop().fadeIn()
+        $(".fullscreen_bg").stop().fadeIn()
+    })
+    $(".pop_login .close_btn").click(function(){
+        $(".pop_login").stop().fadeOut()
+        $(".fullscreen_bg").stop().fadeOut()
+    })
+    $(".fullscreen_bg").click(function(){
+        $(".fullscreen_bg").stop().fadeOut()
+        $(".pop_login").stop().fadeOut()
+        $(".search_box").stop().slideUp()
+    })
+    
+    // 검색창
+    $("header .search").click(function(){
+        $(".search_box").stop().slideToggle()
+        $(".fullscreen_bg").stop().fadeToggle()
+    })
+    $(".search_box .close_btn").click(function(){
+        $(".search_box").stop().slideUp()
+        $(".fullscreen_bg").stop().fadeOut()
+    })
+
+    //풀스크린Bg 누르면 닫히게
+    $(".fullscreen_bg").click(function(){
+        $(".fullscreen_bg").stop().fadeOut()
+        $(".pop_login").stop().fadeOut()
+        $(".search_box").stop().slideUp()
+        $(".ham_menu").removeClass("on")
+    })
+
+    // 탑버튼 페이드인아웃
+    $(window).scroll(function(){
+        sc = $(window).scrollTop()
+        console.log(sc)
+        if(sc > 300){
+            $(".btn_top").stop().fadeIn()
+        }else{
+            $(".btn_top").stop().fadeOut()
+        }
+    })
+    $(".btn_top").click(function(){
+        sc = $(window).scrollTop()
+        $("html, body").animate({scrollTop:0}, 400)
+    })
+
+    //카테고리 선택
+    $(".cate_list").click(function(){
+        category = $(this).attr("data-name")
+        selectedCate = $(this).index()
+        $(".cate_list").eq(selectedCate).addClass("selected")
+        $(".cate_list").not( $(".cate_list").eq(selectedCate) ).removeClass("selected")
+        $(".row4 .item").stop().hide()
+        $(".row4 ."+category).stop().fadeIn()
+    })
+</script>
+</html>
